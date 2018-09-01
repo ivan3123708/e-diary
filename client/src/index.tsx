@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import BaseComponent from './components/BaseComponent';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import EDiary from './components/EDiary';
+import './styles/index.sass';
 
-ReactDOM.render(<BaseComponent />, document.getElementById('app_root'));
+ReactDOM.render(<EDiary />, document.getElementById('app_root'));
