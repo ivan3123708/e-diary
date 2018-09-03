@@ -1,0 +1,63 @@
+.login-modal-container
+  position: fixed
+  width: 100%
+  transition: all .4s ease
+  
+  .login-modal
+    width: 90%
+    max-width: 340px
+    margin: auto
+    background: $grey-light
+    border: 1px solid transparent
+    border-radius: 4px
+    box-shadow: 0 2px 16px $shadow
+
+    .form-container
+      width: 80%
+      margin: 10px auto
+
+      form
+        display: flex
+        flex-direction: column
+        margin-top: 40px
+
+        input
+          margin: 14px 0
+          color: $pink
+          font-size: 14px
+          background: transparent
+          border: none
+          border-bottom: 1px solid $pink
+
+        input::placeholder
+          color: $grey-medium
+
+        button
+          padding: 4px
+          font-size: 14px
+          border: 1px solid $grey-dark
+          border-radius: 4px
+          cursor: pointer
+        
+        button#btn-login, button#btn-register
+          margin: 20px 0 5px 0
+          background: $grey-medium
+          color: $grey-light
+
+        button#btn-cancel
+          margin: 5px 0 20px 0
+          background: transparent
+          color: $grey-dark
+
+        p
+          text-align: center
+
+          span
+            color: $pink
+            cursor: pointer
+
+.modal-closed
+  top: -450px
+
+.modal-open
+  top: 100px
