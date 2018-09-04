@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start:dev-full": "concurrently \"nodemon server.js\" \"npm run start:dev --prefix client\"",
-    "start": "node server.js",
+    "start": "node dist/server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
@@ -17,6 +18,11 @@
     "mongoose": "^5.0.15"
   },
   "devDependencies": {
-    "dotenv": "^6.0.0"
+    "@types/dotenv": "^4.0.3",
+    "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.2.9",
+    "@types/node": "^10.9.4",
+    "dotenv": "^6.0.0",
+    "typescript": "^3.0.3"
   }
 }
