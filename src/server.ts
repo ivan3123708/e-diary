@@ -9,6 +9,7 @@ import passport from 'passport';
 import localStrategy from 'passport-local';
 import { User } from './models/User';
 import authRouter from './routes/auth';
+import userRouter from './routes/user';
 
 dotenv.config({ path: '.env' });
 
@@ -35,6 +36,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(publicPath, 'index.html'));

@@ -1,12 +1,16 @@
 import * as React from 'react';
 import axios, { AxiosResponse } from 'axios';
 
+interface Props {
+  onSubmitForm: () => void;
+}
+
 interface State {
   mode: string;
   error: string | null;
 }
 
-class LoginModal extends React.Component<{}, State> {
+class LoginModal extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 
@@ -32,6 +36,7 @@ class LoginModal extends React.Component<{}, State> {
           this.setState({ error: res.data[0].msg });
         } else {
           this.closeModal();
+          this.props.onSubmitForm();
         }
       });
   }
@@ -46,12 +51,15 @@ class LoginModal extends React.Component<{}, State> {
 
     axios.post('/auth/login', user)
       .then((res: AxiosResponse) => {
-        if (res.data !== 'OK') {
-          this.setState({ error: 'Invalid username or password' });
-        } else {
+        if (res.status === 200) {
+          this.setState({ error: null });
           this.closeModal();
+          this.props.onSubmitForm();
         }
-      });
+      })
+      .catch(() => {
+        this.setState({ error: 'Invalid username or password' });
+      })
   }
 
   toggleMode = (mode: string) => {
@@ -64,7 +72,7 @@ class LoginModal extends React.Component<{}, State> {
     modal.classList.remove('modal-open');
     modal.classList.add('modal-closed');
 
-    this.setState({ mode: 'login' });
+    this.setState({ mode: 'login', error: null });
   }
 
   render() {
@@ -73,10 +81,10 @@ class LoginModal extends React.Component<{}, State> {
         <h3>Login</h3>
         <p className="error">{this.state.error}</p>
         <form onSubmit={this.loginUser}>
-          <input type="text" name="username" placeholder="Username" />
-          <input type="password" name="password" placeholder="Password" />
+          <input type="text" name="username" placeholder="Username"/>
+          <input type="password" name="password" placeholder="Password"/>
           <button id="btn-login" type="submit">Login</button>
-          <button id="btn-cancel" onClick={this.closeModal} >Cancel</button>
+          <button id="btn-cancel" onClick={this.closeModal}>Cancel</button>
           <p>Don't have an account yet? <span onClick={() => this.toggleMode('register')}>Register</span></p>
         </form>
       </div>
@@ -92,7 +100,7 @@ class LoginModal extends React.Component<{}, State> {
           <input type="password" name="password" placeholder="Password" />
           <input type="password" name="passwordRepeat" placeholder="Repeat Password" />
           <button id="btn-register" type="submit">Register</button>
-          <button id="btn-cancel"  onClick={this.closeModal}>Cancel</button>
+          <button id="btn-cancel" onClick={this.closeModal}>Cancel</button>
           <p>Already have an account?  <span onClick={() => this.toggleMode('login')}>Login</span></p>
         </form>
       </div>

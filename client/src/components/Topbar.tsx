@@ -1,25 +1,30 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { StoreState, User } from '../types/index';
+import * as userActions from '../actions/userActions';
 import LoginModal from './LoginModal';
 
-interface State {
-  userLogged: Boolean;
-}
+interface Props {
+  user: User | null;
+  fetchUser: () => void;
+};
 
-class Topbar extends React.Component<{}, State> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userLogged: false
-    }
-  }
-
+class Topbar extends React.Component<Props, {}> {
   openModal = () => {
     const modal = document.getElementsByClassName('login-modal-container')[0];
 
     modal.classList.remove('modal-closed');
     modal.classList.add('modal-open');
+  }
+
+  onSubmitForm = () => {
+    this.props.fetchUser();
+  }
+
+  componentDidMount() {
+    this.props.fetchUser();
   }
 
   render() {
@@ -40,7 +45,7 @@ class Topbar extends React.Component<{}, State> {
           >My Diary</NavLink>
         </li>
         <li>
-          <a href="#" className="nav-link">Logout</a>
+          <a href="/auth/logout" className="nav-link">Logout</a>
         </li>
       </ul>
     );
@@ -54,17 +59,25 @@ class Topbar extends React.Component<{}, State> {
     );
 
     return (
-      <div className="topbar" >
-        <LoginModal />
-        <div className="left" >
-          <p className="title" >E-Diary</p>
+      <div className="topbar">
+        <LoginModal onSubmitForm={this.onSubmitForm} />
+        <div className="left">
+          <p className="title">E-Diary</p>
         </div>
-        <div className="right" >
-          {this.state.userLogged ? loggedUl : notLoggedUl}
+        <div className="right">
+          {!!this.props.user ? loggedUl : notLoggedUl}
         </div>
       </div>
     );
   }
 };
 
-export default Topbar;
+const mapStateToProps = (state: StoreState) => ({
+  user: state.user
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<userActions.UserAction>) => ({
+  fetchUser: () => dispatch(userActions.fetchUser())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Topbar);
