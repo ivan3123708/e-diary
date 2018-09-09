@@ -1,12 +1,12 @@
-import { StoreState } from '../types/index';
-import { RECEIVE_USER } from '../constants/index';
+import { IStoreState } from '../types';
+import { RECEIVE_USER } from '../constants';
 import { UserAction } from '../actions/userActions';
 
-const initialState: StoreState = {
+const initialState: IStoreState = {
   user: null
 };
 
-const userReducer = (state: StoreState = initialState, action: UserAction): StoreState => {
+const userReducer = (state: IStoreState = initialState, action: UserAction): IStoreState => {
   switch(action.type) {
     case RECEIVE_USER:
       return {

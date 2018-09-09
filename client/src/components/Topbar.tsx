@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter, RouteComponentProps } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { StoreState, User } from '../types/index';
+import { IStoreState, User } from '../types';
 import * as userActions from '../actions/userActions';
 import LoginModal from './LoginModal';
 
-interface Props {
+interface IProps extends RouteComponentProps<any> {
   user: User | null;
   fetchUser: () => void;
 };
 
-class Topbar extends React.Component<Props, {}> {
+class Topbar extends React.Component<IProps, {}> {
   openModal = () => {
     const modal = document.getElementsByClassName('login-modal-container')[0];
 
@@ -21,6 +21,7 @@ class Topbar extends React.Component<Props, {}> {
 
   onSubmitForm = () => {
     this.props.fetchUser();
+    this.props.history.push('/home');
   }
 
   componentDidMount() {
@@ -72,7 +73,7 @@ class Topbar extends React.Component<Props, {}> {
   }
 };
 
-const mapStateToProps = (state: StoreState) => ({
+const mapStateToProps = (state: IStoreState) => ({
   user: state.user
 });
 
@@ -80,4 +81,4 @@ const mapDispatchToProps = (dispatch: Dispatch<userActions.UserAction>) => ({
   fetchUser: () => dispatch(userActions.fetchUser())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Topbar));

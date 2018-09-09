@@ -1,6 +1,6 @@
 import { takeEvery, call, put, all, fork } from 'redux-saga/effects';
 import axios from 'axios';
-import * as constants from '../constants/index';
+import * as constants from '../constants';
 import * as userActions from '../actions/userActions';
 
 function* fetchUser() {

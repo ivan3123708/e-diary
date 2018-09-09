@@ -1,16 +1,16 @@
 import * as React from 'react';
 import axios, { AxiosResponse } from 'axios';
 
-interface Props {
+interface IProps {
   onSubmitForm: () => void;
 }
 
-interface State {
+interface IState {
   mode: string;
   error: string | null;
 }
 
-class LoginModal extends React.Component<Props, State> {
+class LoginModal extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -36,7 +36,6 @@ class LoginModal extends React.Component<Props, State> {
           this.setState({ error: res.data[0].msg });
         } else {
           this.closeModal();
-          this.props.onSubmitForm();
         }
       });
   }
@@ -54,7 +53,6 @@ class LoginModal extends React.Component<Props, State> {
         if (res.status === 200) {
           this.setState({ error: null });
           this.closeModal();
-          this.props.onSubmitForm();
         }
       })
       .catch(() => {
@@ -68,11 +66,12 @@ class LoginModal extends React.Component<Props, State> {
 
   closeModal = () => {
     const modal = document.getElementsByClassName('login-modal-container')[0];
-
+    
     modal.classList.remove('modal-open');
     modal.classList.add('modal-closed');
-
+    
     this.setState({ mode: 'login', error: null });
+    this.props.onSubmitForm();
   }
 
   render() {

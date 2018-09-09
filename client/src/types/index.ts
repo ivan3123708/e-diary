@@ -1,9 +1,11 @@
-export interface User {
+export interface IUser {
   username: string;
   email: string;
   password: string;
 }
 
-export interface StoreState {
-  user: User | null;
+export type User = IUser | null;
+
+export interface IStoreState {
+  user: User;
 }

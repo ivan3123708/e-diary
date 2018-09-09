@@ -1,22 +1,22 @@
-import * as constants from '../constants/index';
-import { User } from '../types/index';
+import * as constants from '../constants';
+import { User } from '../types';
 
-interface FetchUser {
+interface IFetchUser {
   type: constants.FETCH_USER;
 };
 
-export const fetchUser = (): FetchUser => ({
+export const fetchUser = (): IFetchUser => ({
   type: constants.FETCH_USER
 });
 
-interface ReceiveUser {
+interface IReceiveUser {
   type: constants.RECEIVE_USER;
   user: any;
 };
 
-export const receiveUser = (user: User): ReceiveUser => ({
+export const receiveUser = (user: User): IReceiveUser => ({
   type: constants.RECEIVE_USER,
   user
 });
 
-export type UserAction = FetchUser | ReceiveUser;
+export type UserAction = IFetchUser | IReceiveUser;
