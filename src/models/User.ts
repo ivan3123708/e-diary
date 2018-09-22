@@ -5,6 +5,7 @@ interface IUserDocument extends mongoose.Document {
   username: string;
   email: string;
   password: string;
+  diary: any[];
 };
 
 interface IUserModel extends mongoose.Model<IUserDocument> {
@@ -12,12 +13,13 @@ interface IUserModel extends mongoose.Model<IUserDocument> {
   authenticate(): any;
   serializeUser(): any;
   deserializeUser(): any;
-}
+};
 
 const userSchema: mongoose.Schema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String
+  password: String,
+  diary: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Page' }]
 });
 
 userSchema.plugin(passportLocalMongoose);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import MyDiarySidebar from './MyDiarySidebar';
+import Write from './Write';
 
 interface IState {
   action: string | null;
@@ -32,7 +33,7 @@ class MyDiary extends React.Component<{}, IState> {
     const renderContent = () => {
       switch (this.state.action) {
         case 'write':
-          return <h1>WRITE</h1>
+          return <Write />
         case 'search':
           return <h1>SEARCH</h1>
         case 'delete':

@@ -4,7 +4,7 @@ import * as constants from '../constants';
 import * as userActions from '../actions/userActions';
 
 function* fetchUser() {
-  const response = yield call(axios.get, '/user');
+  const response = yield call(axios.get, '/api/user');
   yield put(userActions.receiveUser(response.data));
 };
 

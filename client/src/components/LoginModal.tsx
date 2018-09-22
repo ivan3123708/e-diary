@@ -82,8 +82,8 @@ class LoginModal extends React.Component<IProps, IState> {
         <form onSubmit={this.loginUser}>
           <input type="text" name="username" placeholder="Username"/>
           <input type="password" name="password" placeholder="Password"/>
-          <button id="btn-login" type="submit">Login</button>
-          <button id="btn-cancel" onClick={this.closeModal}>Cancel</button>
+          <button id="btn-login" className="btn-wide" type="submit">Login</button>
+          <button id="btn-cancel" className="btn-wide" onClick={this.closeModal}>Cancel</button>
           <p>Don't have an account yet? <span onClick={() => this.toggleMode('register')}>Register</span></p>
         </form>
       </div>
@@ -98,8 +98,8 @@ class LoginModal extends React.Component<IProps, IState> {
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Password" />
           <input type="password" name="passwordRepeat" placeholder="Repeat Password" />
-          <button id="btn-register" type="submit">Register</button>
-          <button id="btn-cancel" onClick={this.closeModal}>Cancel</button>
+          <button id="btn-register" className="btn-wide" type="submit">Register</button>
+          <button id="btn-cancel" className="btn-wide" onClick={this.closeModal}>Cancel</button>
           <p>Already have an account?  <span onClick={() => this.toggleMode('login')}>Login</span></p>
         </form>
       </div>

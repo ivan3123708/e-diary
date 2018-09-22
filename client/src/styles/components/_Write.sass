@@ -1,0 +1,43 @@
+.write
+  display: grid
+  grid-template-columns: auto 350px
+  height: 100%
+
+  .text
+    text-align: center
+
+    textarea
+      width: 85%
+      height: 500px
+      margin-top: 40px
+      padding: 50px 30px
+      font-family: $source-sans-pro
+      font-size: 16px
+      color: $grey-4
+      border: 1px solid $grey-2
+      border-radius: 4px
+      resize: none
+
+  .control
+    display: flex
+    flex-direction: column
+    padding-top: 40px
+
+    .container
+      width: 320px
+
+      #date-picker
+        padding: 0
+
+      .btns
+        margin-top: 380px
+
+        span
+          margin-right: 10px
+
+        #btn-save
+          width: 100%
+          margin-top: 15px
+          background: $pink
+          color: white
+          border-color: transparent
