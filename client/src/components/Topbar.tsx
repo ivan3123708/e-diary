@@ -7,7 +7,7 @@ import * as userActions from '../actions/userActions';
 import LoginModal from './LoginModal';
 
 interface IProps extends RouteComponentProps<any> {
-  user: User | null;
+  user: User;
   fetchUser: () => void;
 };
 

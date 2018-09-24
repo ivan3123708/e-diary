@@ -11,7 +11,7 @@ export const fetchUser = (): IFetchUser => ({
 
 interface IReceiveUser {
   type: constants.RECEIVE_USER;
-  user: any;
+  user: User;
 };
 
 export const receiveUser = (user: User): IReceiveUser => ({

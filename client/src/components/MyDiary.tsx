@@ -1,9 +1,10 @@
 import * as React from 'react';
 import MyDiarySidebar from './MyDiarySidebar';
+import MyPages from './MyPages';
 import Write from './Write';
 
 interface IState {
-  action: string | null;
+  action: string;
 }
 
 class MyDiary extends React.Component<{}, IState> {
@@ -11,7 +12,7 @@ class MyDiary extends React.Component<{}, IState> {
     super(props);
 
     this.state = {
-      action: null
+      action: 'diary'
     }
   }
 
@@ -32,14 +33,12 @@ class MyDiary extends React.Component<{}, IState> {
   render() {
     const renderContent = () => {
       switch (this.state.action) {
+        case 'diary':
+          return <MyPages />;
         case 'write':
-          return <Write />
-        case 'search':
-          return <h1>SEARCH</h1>
+          return <Write />;
         case 'delete':
-          return <h1>DELETE</h1>
-        case null:
-          return <p>You haven't written anything yet. Click 'Write' on the left sidebar to start writing yout diary.</p>
+          return <h1>DELETE</h1>;
       }
     };
 
